@@ -10,7 +10,7 @@ html = req.text
 soup = BeautifulSoup(html, 'html.parser')
 table_div = soup.find(id = "content")
 tables = table_div.find_all("table")
-time = table_div.find_all("div",{"class":"timetable"},"p")
+time = table_div.find_all("div", {'class': "timetable"}, "p")
 time=time[0].text
 print(time)
 
@@ -45,3 +45,30 @@ if userinput in rows:
 else:
     print("없는 지역 입력.")
     raise NotImplementedError
+
+
+html_text_front= """<!DOCTYPE html>
+<html>
+    <head>
+        <title>코로나 확진자 정보</title>
+    </head>
+    <body>"""
+
+html_text_back="""
+    </body>
+</html>
+"""
+
+with open('index.html', 'w') as html_file:
+    html_file.write(html_text_front)
+    html_file.write("\n       <h2>{} - {}</h2>\n".format(time,userinput))
+    html_file.write("       <h5>총 확진자 - {}</h5>\n".format(nums[k + 3]))
+    html_file.write("       <h5>전일대비증감 - {}</h5>\n".format(nums[k]))
+    html_file.write("       <h5>격리중 - {}</h5>\n".format(nums[k + 4]))
+    html_file.write("       <h5>격리해제 - {}</h5>\n".format(nums[k + 5]))
+    html_file.write("       <h5>사망자 - {}</h5>\n".format(nums[k + 6]))
+    html_file.write("       <h5>발생률 - {}</h5>".format(nums[k + 7]))
+    html_file.write(html_text_back)
+html_file.close()
+
+
