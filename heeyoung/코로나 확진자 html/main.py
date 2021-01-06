@@ -1,8 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import numpy as np
-import pandas as pd
-import os
 
 URL = 'http://ncov.mohw.go.kr/bdBoardList_Real.do?brdId=1&brdGubun=13&ncvContSeq=&contSeq=&board_id=&gubun='
 req = requests.get(URL)
@@ -59,7 +57,7 @@ html_text_back="""
 </html>
 """
 
-with open('index.html', 'w') as html_file:
+with open('area.html', 'w') as html_file:
     html_file.write(html_text_front)
     html_file.write("\n       <h2>{} - {}</h2>\n".format(time,userinput))
     html_file.write("       <h5>총 확진자 - {}</h5>\n".format(nums[k + 3]))

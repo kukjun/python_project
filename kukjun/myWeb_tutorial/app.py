@@ -48,7 +48,7 @@ def test_module():
 
 @app.route('/index') #HTML 렌더링
 def index_module():
-    return render_template('index.html')
+    return render_template('vaccine.html')
 
 @app.route('/info') #HTML 렌더링
 def info_module():
